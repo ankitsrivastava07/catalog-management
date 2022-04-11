@@ -3,7 +3,7 @@ import lombok.Data;
 
 @Data
 public class ApiResponse {
-    private String msg;
+    private String message;
     private Boolean status;
     private Object data;
 }

@@ -1,14 +1,15 @@
 package catalogManagement.dto;
 import lombok.Data;
+import java.util.List;
 
 @Data
 public class BookDto {
 
+    private String id;
+    private String name;
     private String title;
     private String description;
-    private String id;
+    private List<AuthorDto> authors;
     private String isbn;
-    private String name;
-    private String authors[];
     private String publishers[];
 }

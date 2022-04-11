@@ -18,8 +18,8 @@ public class BookController {
     public ApiResponse findBookByTitle(@PathVariable String title){
         List<BookDto> list =bookService.findByTitle(title);
         ApiResponse response =new ApiResponse();
-        response.setStatus(Boolean.FALSE);
-        response.setMsg("Success");
+        response.setStatus(Boolean.TRUE);
+        response.setMessage("Success");
         response.setData(list);
         return response;
     }

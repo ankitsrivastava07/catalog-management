@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.Action;
-
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -16,7 +14,7 @@ public class UserServiceImpl implements UserService{
     public ApiResponse findByEmail(String email) {
        ApiResponse apiResponse= new ApiResponse();
         apiResponse.setData(userDao.findByEmail(email).stream().map(e->e.getEmail()).collect(Collectors.toList()));
-        apiResponse.setMsg("Some referenced email fetched successfully ");
+        apiResponse.setMessage("Some referenced email fetched successfully ");
         apiResponse.setStatus(Boolean.TRUE);
         return apiResponse;
     }
