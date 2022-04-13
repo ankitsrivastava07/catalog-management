@@ -1,7 +1,5 @@
 package catalogManagement.convertor;
-import catalogManagement.dao.book.bookentity.BookEntity;
-import catalogManagement.dao.elastic.ElasticBookEntity;
-import java.util.ArrayList;
+import catalogManagement.dao.elastic.book.bookentity.ElasticBookEntity;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;

@@ -1,6 +1,6 @@
 package catalogManagement.controller;
 import catalogManagement.dto.apiResponse.ApiResponse;
-import catalogManagement.service.userservice.UserService;
+import catalogManagement.service.elastic.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @Autowired UserService userService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("{email}")
     public ResponseEntity<?> findByEmail(@PathVariable String email){
-      ApiResponse response = userService.findByEmail(email);
-        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+      ApiResponse response = new ApiResponse();
+      response.setData(userService.findByEmail(email));
+     return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 }

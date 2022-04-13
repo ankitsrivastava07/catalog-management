@@ -24,13 +24,13 @@ ext {
 
 dependencies {
 	implementation group: 'org.modelmapper.extensions', name: 'modelmapper-spring', version: '1.1.0'
-	implementation group: 'com.sun.jersey.contribs', name: 'jersey-apache-client4', version: '1.19.4'
+	implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.6.2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	/*implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'*/
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	/*implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'*/
 /*
 	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
 	implementation 'org.springframework.kafka:spring-kafka'

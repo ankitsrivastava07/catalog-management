@@ -1,14 +1,10 @@
+/*
 package catalogManagement.postconstruct;
+import catalogManagement.dao.mongo.user.repository.UserRepository;
 import java.util.Arrays;
-import catalogManagement.dao.book.bookentity.AuthorEntity;
-import catalogManagement.dao.book.bookentity.BookEntity;
-import catalogManagement.dao.book.repository.MongoAuthorRepository;
-import catalogManagement.dao.book.repository.MongoBookRepository;
-import catalogManagement.dao.user.repository.UserRepository;
 import catalogManagement.encrypt.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import javax.annotation.PostConstruct;
 
 @Configuration
@@ -17,29 +13,43 @@ public class PostConstructInilization {
     public static final String USER_ROLE="ADMIN";
     //ElasticsearchRestTemplate elasticsearchRestTemplate;
     @Autowired
-    MongoAuthorRepository mongoAuthorRepository;
+    AuthorRepository mongoAuthorRepository;
     @Autowired
-    MongoBookRepository mongoBookRepository;
+    BookRepository mongoBookRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @PostConstruct
     public void save(){
-        System.out.println("postconstrunct ");
+        System.out.println(" PostConstruct method called ");
+        //UserEntity user=
 
-        BookEntity book1= new BookEntity();
-        AuthorEntity author= new AuthorEntity();
-        author.setEmail("author@gmail.com");
-        author.setMobile("9999");
-        author.setFullName("Shay Banon");
-        author.setPassword(PasswordEncoder.encodePassword("author"));
-        author.setSubjects(new String[]{"Java","Spring Boot","Aws Cloud"});
-        mongoAuthorRepository.save(author);
+        CategoryEntity category= new CategoryEntity();
+        category.setName("Programming Language");
+        category.setCreatedBy(null);
 
-        book1.setName("Learning Elasticsearch ");
-        book1.setAuthors(Arrays.asList(author));
-        book1.setTitle("Learning Elasticsearch");
-        book1.setDescription("Elastic search is one of the most fast searching algorithm ");
+        ElasticBookEntity book1= new ElasticBookEntity();
+        ElasticAuthorEntity author1= new ElasticAuthorEntity();
+        author1.setEmail("author@gmail.com");
+        author1.setFullName("Kathy Sierra");
+        author1.setPassword(PasswordEncoder.encodePassword("author"));
+        author1.setSubjects(new String[]{"Java"});
+        mongoAuthorRepository.save(author1);
+
+        ElasticAuthorEntity author2= new ElasticAuthorEntity();
+        author2.setEmail("author@gmail.com");
+        author2.setFullName("Bert Bates");
+        author2.setPassword(PasswordEncoder.encodePassword("author"));
+        author2.setSubjects(new String[]{"Java","Python"});
+        mongoAuthorRepository.save(author2);
+
+        book1.setName("Elastic search for beginner");
+        book1.setAuthors(Arrays.asList(author1,author2));
+        book1.setTitle("Elastic search for beginner");
+        book1.setDescription("For beginners, Elastic  search is still the best book to get started ");
         book1= mongoBookRepository.save(book1);
 
     }
 
 }
+*/
