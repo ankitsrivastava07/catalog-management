@@ -3,5 +3,5 @@ import catalogManagement.dto.BookDto;
 import java.util.List;
 
 public interface ElasticSearchBookService {
-    List<BookDto> findByTitle(String title);
+    List<BookDto> findByQuery(String query);
 }

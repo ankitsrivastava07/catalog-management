@@ -3,5 +3,5 @@ import catalogManagement.dto.BookDto;
 
 public interface BookService {
     BookDto save(BookDto bookDto);
-    java.util.List<BookDto> findByTitle(String title);
+    java.util.List<BookDto> findByQuery(String title);
 }

@@ -13,8 +13,7 @@ import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.*;
 import org.springframework.stereotype.Service;
 
-import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
-import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 @Service("elasticBookService")
 public class BookServiceImpl implements ElasticSearchBookService {
@@ -23,12 +22,12 @@ public class BookServiceImpl implements ElasticSearchBookService {
     @Autowired ElasticsearchOperations elasticsearchOperations;
 
     @Override
-    public List<BookDto> findByTitle(String title) {
-        Criteria criteria = new Criteria("title").is(title);
-        Query query = new CriteriaQuery(criteria);
-        NativeSearchQuery nativeSearchQuery= new NativeSearchQueryBuilder()
-                .withQuery(multiMatchQuery(title,"title","name","authors.fullName","authors.subjects"))
+    public List<BookDto> findByQuery(String query) {
+
+        NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+                .withQuery(multiMatchQuery(query,"title", "authors.subjects", "authors.fullName","name"))
                 .build();
+
        SearchHits<ElasticBookEntity> list =  elasticsearchOperations.search(nativeSearchQuery,ElasticBookEntity.class);
         List<ElasticBookEntity> entities=  list.stream().map(e->e.getContent()).collect(Collectors.toList());
         //List<ElasticBookEntity>list= bookDaoService.findByTitle(title);

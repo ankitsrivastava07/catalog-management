@@ -21,7 +21,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> findByTitle(String title) {
-      return elasticBookService.findByTitle(title);
+    public List<BookDto> findByQuery(String query) {
+      return elasticBookService.findByQuery(query);
     }
 }

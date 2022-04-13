@@ -1,5 +1,6 @@
 package catalogManagement.controller;
 import catalogManagement.dto.BookDto;
+import catalogManagement.dto.BookSearchBean;
 import catalogManagement.dto.apiResponse.ApiResponse;
 import catalogManagement.service.mongo.BookService;
 import java.util.List;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
     @Autowired BookService bookService;
 
-    @GetMapping("/title/{title}")
-    public ResponseEntity<?> findBookByTitle(@PathVariable String title){
-        List<BookDto> list =bookService.findByTitle(title);
+    @GetMapping("/search/{q}")
+    public ResponseEntity<?> findBookByTitle(@PathVariable("q") String query){
+        List<BookDto> list =bookService.findByQuery(query);
         ApiResponse response =new ApiResponse();
         response.setStatus(Boolean.TRUE);
         response.setMessage("Success");
